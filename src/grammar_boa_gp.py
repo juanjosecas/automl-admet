@@ -9,39 +9,38 @@ import random
 import fcntl
 import os
 from datetime import datetime
-import pandas as pd
 
 from .workflow.scaler_tranformer import ScalingTransformer
 from .workflow.feature_selection_transformer import FeatureSelectionTransformer
 from .workflow.ml_algorithm_transformer import MLAlgorithmTransformer
 
-from sklearn.metrics import make_scorer, matthews_corrcoef, roc_auc_score, recall_score, average_precision_score, precision_score, accuracy_score
+from sklearn.metrics import (
+    make_scorer, matthews_corrcoef, roc_auc_score,
+    recall_score, average_precision_score, 
+    precision_score, accuracy_score
+)
 from sklearn.model_selection import cross_val_score, StratifiedKFold
-
 
 from pyAgrum.skbn import BNClassifier
 import pyAgrum.lib.image as gumimage
 import pyAgrum.skbn._MBCalcul as mbcalcul
-
 import pyAgrum as gum
 
-warnings.filterwarnings("ignore")
-
-
-
-
-        
-
-
-
-        
+warnings.filterwarnings("ignore")        
 
 
 class GrammarBayesOptGeneticfProgAlgorithm:
-    def __init__(self, grammar, training_dir, testing_dir, fitness_cache={}, num_cores=20, time_budget_minutes_alg_eval = 1, 
-                 population_size=100, max_generations=10, max_time=60, mutation_rate=0.15, crossover_rate=0.8, 
-                 crossover_mutation_rate=0.05, elitism_size=1, fitness_metric="mcc", 
-                 experiment_name = "expABC", stopping_criterion = "time", seed=0):
+    def __init__(
+        self, grammar, training_dir, testing_dir, 
+        fitness_cache={}, num_cores=20, 
+        time_budget_minutes_alg_eval=1, 
+        population_size=100, max_generations=10, 
+        max_time=60, mutation_rate=0.15, 
+        crossover_rate=0.8, crossover_mutation_rate=0.05, 
+        elitism_size=1, fitness_metric="mcc", 
+        experiment_name="expABC", stopping_criterion="time", 
+        seed=0
+    ):
         self.grammar = grammar
         self.training_dir = training_dir
         self.testing_dir = testing_dir

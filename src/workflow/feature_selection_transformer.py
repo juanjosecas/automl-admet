@@ -1,7 +1,11 @@
-from sklearn.feature_selection import VarianceThreshold, SelectPercentile, SelectFpr, SelectFwe, SelectFdr, chi2, f_classif, RFE
+from sklearn.feature_selection import (
+    VarianceThreshold, SelectPercentile, SelectFpr, 
+    SelectFwe, SelectFdr, chi2, f_classif, RFE
+)
 from .ml_algorithm_transformer import MLAlgorithmTransformer
 import fcntl
 import pandas as pd
+
 
 class FeatureSelectionTransformer:
     def __init__(self, training_df, testing_df, training_label_col, error_log):
