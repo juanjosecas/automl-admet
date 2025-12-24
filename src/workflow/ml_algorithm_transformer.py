@@ -1,4 +1,7 @@
-from sklearn.ensemble import ExtraTreesClassifier, AdaBoostClassifier, RandomForestClassifier, GradientBoostingClassifier
+from sklearn.ensemble import (
+    ExtraTreesClassifier, AdaBoostClassifier,
+    RandomForestClassifier, GradientBoostingClassifier
+)
 from sklearn.tree import DecisionTreeClassifier, ExtraTreeClassifier
 from sklearn.svm import SVC, NuSVC
 from sklearn.neural_network import MLPClassifier

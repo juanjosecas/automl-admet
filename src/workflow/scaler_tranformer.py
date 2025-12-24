@@ -1,6 +1,10 @@
-from sklearn.preprocessing import Normalizer, MaxAbsScaler, MinMaxScaler, RobustScaler, StandardScaler
+from sklearn.preprocessing import (
+    Normalizer, MaxAbsScaler, MinMaxScaler, 
+    RobustScaler, StandardScaler
+)
 import fcntl
 import pandas as pd
+
 
 class ScalingTransformer:
     def __init__(self, training_df, testing_df, error_log):
@@ -17,10 +21,10 @@ class ScalingTransformer:
             return pd.DataFrame(df_np, columns = self.training_df.columns)
         except Exception as e:
             with open(self.error_log, "a") as f:
-                fcntl.flock(f, fcntl.LOCK_EX)  # Lock the file
-                f.write("Error on feature scaling - scaling normalizer" + "\n")
-                f.write(str(e) + "\n"  + "\n")
-                fcntl.flock(f, fcntl.LOCK_UN)  # Unlock the file           
+                fcntl.flock(f, fcntl.LOCK_EX)
+                f.write("Error on feature scaling - scaling normalizer\n")
+                f.write(str(e) + "\n\n")
+                fcntl.flock(f, fcntl.LOCK_UN)           
             return None
 
     
@@ -29,13 +33,13 @@ class ScalingTransformer:
             self.model = MaxAbsScaler().fit(self.training_df)
             df_np = self.model.transform(self.training_df)
     
-            return pd.DataFrame(df_np, columns = self.training_df.columns)
+            return pd.DataFrame(df_np, columns=self.training_df.columns)
         except Exception as e:
             with open(self.error_log, "a") as f:
-                fcntl.flock(f, fcntl.LOCK_EX)  # Lock the file
-                f.write("Error on feature scaling - max_abs_scaler" + "\n")
-                f.write(str(e) + "\n"  + "\n")
-                fcntl.flock(f, fcntl.LOCK_UN)  # Unlock the file            
+                fcntl.flock(f, fcntl.LOCK_EX)
+                f.write("Error on feature scaling - max_abs_scaler\n")
+                f.write(str(e) + "\n\n")
+                fcntl.flock(f, fcntl.LOCK_UN)
             return None
 
     
@@ -44,13 +48,13 @@ class ScalingTransformer:
             self.model = MinMaxScaler().fit(self.training_df)
             df_np = self.model.transform(self.training_df)
     
-            return pd.DataFrame(df_np, columns = self.training_df.columns)
+            return pd.DataFrame(df_np, columns=self.training_df.columns)
         except Exception as e:
             with open(self.error_log, "a") as f:
-                fcntl.flock(f, fcntl.LOCK_EX)  # Lock the file
-                f.write("Error on feature scaling - min_max_scaler" + "\n")
-                f.write(str(e) + "\n"  + "\n")
-                fcntl.flock(f, fcntl.LOCK_UN)  # Unlock the file         
+                fcntl.flock(f, fcntl.LOCK_EX)
+                f.write("Error on feature scaling - min_max_scaler\n")
+                f.write(str(e) + "\n\n")
+                fcntl.flock(f, fcntl.LOCK_UN)
             return None 
 
     

@@ -1,6 +1,7 @@
 import random
 from collections import defaultdict
 
+
 class BNFGrammar:
     def __init__(self):
         self.grammar = defaultdict(list)
@@ -9,9 +10,7 @@ class BNFGrammar:
         
 
     def load_grammar(self, bnf_text: str):
-        """
-        Parses the BNF grammar from a string.
-        """
+        """Parse the BNF grammar from a string."""
         for line in bnf_text.strip().splitlines():
             if "::=" in line:
                 lhs, rhs = line.split("::=", 1)
@@ -27,10 +26,11 @@ class BNFGrammar:
 
     def generate_parse_tree(self, symbol: str = "<start>", max_depth: int = 10) -> dict:
         """
-        Generates a parse tree starting from the given symbol, ensuring mandatory grammar components are included.
+        Generate a parse tree starting from the given symbol,
+        ensuring mandatory grammar components are included.
         """
         if max_depth <= 0 or symbol not in self.grammar:
-            return symbol  # Return the symbol as a terminal if max depth is reached
+            return symbol  # Return the symbol as a terminal
     
         # Strictly enforce the `<start>` rule
         if symbol == "<start>":
@@ -48,9 +48,7 @@ class BNFGrammar:
 
     
     def parse_tree_to_string(self, tree) -> str:
-        """
-        Reconstructs a string from the parse tree.
-        """
+        """Reconstruct a string from the parse tree."""
         if isinstance(tree, str):
             # Leaf node (terminal)
             return tree
@@ -61,7 +59,8 @@ class BNFGrammar:
     
     def validate_parse_tree(self, tree, symbol="<start>") -> bool:
         """
-        Validates if the parse tree conforms to the grammar and respects the `<start>` structure.
+        Validate if the parse tree conforms to the grammar
+        and respects the `<start>` structure.
         """
         if isinstance(tree, str):
             return tree in self.terminals  # Check terminal validity
